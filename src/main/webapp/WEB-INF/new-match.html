@@ -1,0 +1,43 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новая игра</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Создание новой игры</h1>
+        <form action="/new-match" method="post">
+            <div class="form-group">
+                <label for="name1">Имя игрока 1:</label>
+                <input type="text" id="name1" name="player1" required>
+
+                <label for="name2">Имя игрока 2:</label>
+                <input type="text" id="name2" name="player2" required>
+                <span id="name-error" style="color:red"></span>
+            </div>
+            <button type="submit">Начать матч</button>
+        </form>
+    </div>
+    <script>
+        function checkNamesDifferent() {
+            const name1 = document.getElementById('name1').value.trim();
+            const name2 = document.getElementById('name2').value.trim();
+            const error = document.getElementById('name-error');
+            const submitBtn = document.querySelector('button[type="submit"]');
+
+            if (name1 && name2 && name1 === name2) {
+                error.textContent = 'Имена не должны совпадать!';
+                submitBtn.disabled = true;
+            } else {
+                if (error.textContent === 'Имена не должны совпадать!') error.textContent = '';
+                if (!error.textContent) submitBtn.disabled = false;
+            }
+        }
+
+        document.getElementById('name1').addEventListener('input', checkNamesDifferent);
+        document.getElementById('name2').addEventListener('input', checkNamesDifferent);
+    </script>
+</body>
+</html>
