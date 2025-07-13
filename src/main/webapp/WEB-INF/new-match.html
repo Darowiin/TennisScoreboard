@@ -6,10 +6,17 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div class="container">
+    <nav>
+        <p>Tennis Scoreboard</p>
+        <div class="nav-links">
+            <a href="main">Главная</a>
+            <a href="matches">Матчи</a>
+        </div>
+    </nav>
+    <div class="card-container new-match-container">
         <h1>Создание новой игры</h1>
         <form action="/new-match" method="post">
-            <div class="form-group">
+            <div class="new-match-form">
                 <label for="name1">Имя игрока 1:</label>
                 <input type="text" id="name1" name="player1" required>
 

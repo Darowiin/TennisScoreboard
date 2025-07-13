@@ -26,9 +26,6 @@ public class FinishedMatchesService {
 
     public List<MatchDto> getMatchesByPage(int page, int size) {
         List<MatchDto> matches = getMatches();
-        for (MatchDto match : matches) {
-            System.out.println(match.toString());
-        }
         if (matches == null || matches.isEmpty()) {
             return new ArrayList<>();
         }

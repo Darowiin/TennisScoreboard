@@ -5,53 +5,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Страница матча</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-
+<nav>
+  <p>Tennis Scoreboard</p>
+  <div class="nav-links">
+    <a href="main">Главная</a>
+    <a href="matches">Матчи</a>
+  </div>
+</nav>
 <%
   Object scoreObj = request.getAttribute("matchScoreModel");
   UUID matchUuid = (UUID) request.getAttribute("matchUuid");
   if (scoreObj != null) {
     com.dto.MatchScoreModel score = (com.dto.MatchScoreModel) scoreObj;
-
 %>
-<table>
-  <thead>
-  <tr>
-    <th scope="col">Players</th>
-    <th scope="col">Score</th>
-    <th scope="col">Games</th>
-    <th scope="col">Sets</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row"> <%= score.getMatchDto().getFirstPlayer().getName() %></th>
-    <td><%= score.getFirstPlayerScore()%></td>
-    <td><%= score.getGames().get(0)%></td>
-    <td><%= score.getSets().get(0)%></td>
-    <td>
-      <form method="post" action="/match-score?uuid=<%= matchUuid %>">
-        <input type="hidden" name="winnerId" value="1">
-        <button type="submit">Добавить очко</button>
-      </form>
-  </tr>
-  <tr>
-    <th scope="row"><%= score.getMatchDto().getSecondPlayer().getName() %></th>
-    <td><%= score.getSecondPlayerScore()%></td>
-    <td><%= score.getGames().get(1)%></td>
-    <td><%= score.getSets().get(1)%></td>
-    <td>
-      <form method="post" action="/match-score?uuid=<%= matchUuid %>">
-        <input type="hidden" name="winnerId" value="2">
-        <button type="submit">Добавить очко</button>
-      </form>
-  </tr>
-  </tbody>
-</table>
+<div class="card-container match-score-container">
+  <h1>Счёт матча</h1>
+  <table class="match-score-table">
+    <thead>
+    <tr>
+      <th>Игрок</th>
+      <th>Очки</th>
+      <th>Геймы</th>
+      <th>Сеты</th>
+      <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= score.getMatchDto().getFirstPlayer().getName() %></td>
+      <td><%= score.getFirstPlayerScoreDisplay()%></td>
+      <td><%= score.getGames().get(0)%></td>
+      <td><%= score.getSets().get(0)%></td>
+      <td>
+        <form method="post" action="/match-score?uuid=<%= matchUuid %>">
+          <input type="hidden" name="winnerId" value="1">
+          <button type="submit">Добавить очко</button>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td><%= score.getMatchDto().getSecondPlayer().getName() %></td>
+      <td><%= score.getSecondPlayerScoreDisplay()%></td>
+      <td><%= score.getGames().get(1)%></td>
+      <td><%= score.getSets().get(1)%></td>
+      <td>
+        <form method="post" action="/match-score?uuid=<%= matchUuid %>">
+          <input type="hidden" name="winnerId" value="2">
+          <button type="submit">Добавить очко</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
 <%
   }
 %>
-
 </body>
 </html>

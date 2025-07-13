@@ -15,11 +15,12 @@ public class MatchesController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int size = 3;
         int page = req.getParameter("page") == null ? 1 : Integer.parseInt(req.getParameter("page"));
         int matchCount = finishedMatchesService.getTotalMatchesCount();
-        var matches = finishedMatchesService.getMatchesByPage(page, 10);
+        var matches = finishedMatchesService.getMatchesByPage(page, size);
 
-        int maxPages = (int) Math.ceil((double) matchCount / 10);
+        int maxPages = (int) Math.ceil((double) matchCount / size);
 
         req.setAttribute("maxPages", maxPages);
         req.setAttribute("matches", matches);

@@ -14,8 +14,8 @@ public class MatchScoreCalculationService {
         PlayerDto secondPlayer = matchScore.getMatchDto().getSecondPlayer();
         if (matchScore.getFirstPlayerScore() == 40 && matchScore.getSecondPlayerScore() == 40) {
             if (matchScore.getAdvantage() == null) {
-                matchScore.setAdvantage(playerDto.getName());
-            } else if (matchScore.getAdvantage().equals(playerDto.getName())) {
+                matchScore.setAdvantage(playerDto.equals(firstPlayer) ? "1" : "2");
+            } else if (matchScore.getAdvantage().equals(playerDto.equals(firstPlayer) ? "1" : "2")) {
                 if (playerDto.equals(firstPlayer)) {
                     updateGamesAndSets(matchScore, 0);
                 } else {
