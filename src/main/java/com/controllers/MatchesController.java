@@ -17,8 +17,14 @@ public class MatchesController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int size = 3;
         int page = req.getParameter("page") == null ? 1 : Integer.parseInt(req.getParameter("page"));
-        int matchCount = finishedMatchesService.getTotalMatchesCount();
-        var matches = finishedMatchesService.getMatchesByPage(page, size);
+        String name = req.getParameter("name");
+        int matchCount;
+        if (name != null && !name.isEmpty()) {
+            matchCount = finishedMatchesService.getFilteredMatchesCount(name);
+        } else {
+            matchCount = finishedMatchesService.getTotalMatchesCount();
+        }
+        var matches = finishedMatchesService.getMatchesByPage(page, size, name);
 
         int maxPages = (int) Math.ceil((double) matchCount / size);
 

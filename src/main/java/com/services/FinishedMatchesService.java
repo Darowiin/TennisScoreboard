@@ -24,8 +24,12 @@ public class FinishedMatchesService {
         return matches;
     }
 
-    public List<MatchDto> getMatchesByPage(int page, int size) {
+    public List<MatchDto> getMatchesByPage(int page, int size, String filter) {
         List<MatchDto> matches = getMatches();
+        if (filter != null && !filter.isEmpty()) {
+            matches.removeIf(match -> !match.getFirstPlayer().getName().toLowerCase().contains(filter.toLowerCase()) &&
+                                      !match.getSecondPlayer().getName().toLowerCase().contains(filter.toLowerCase()));
+        }
         if (matches == null || matches.isEmpty()) {
             return new ArrayList<>();
         }
@@ -42,5 +46,14 @@ public class FinishedMatchesService {
 
     public int getTotalMatchesCount() {
         return matchDao.getAll().map(List::size).orElse(0);
+    }
+
+    public int getFilteredMatchesCount(String filter) {
+        List<MatchDto> matches = getMatches();
+        if (filter != null && !filter.isEmpty()) {
+            matches.removeIf(match -> !match.getFirstPlayer().getName().toLowerCase().contains(filter.toLowerCase()) &&
+                                      !match.getSecondPlayer().getName().toLowerCase().contains(filter.toLowerCase()));
+        }
+        return matches.size();
     }
 }
