@@ -34,7 +34,7 @@ public class OngoingMatchesService {
         firstPlayer = firstOpt.map(Mapper::toPlayerDto).orElse(new PlayerDto(firstPlayerName));
         secondPlayer = secondOpt.map(Mapper::toPlayerDto).orElse(new PlayerDto(secondPlayerName));
 
-        MatchDto matchDto = new MatchDto(firstPlayer, secondPlayer);
+        MatchDto matchDto = new MatchDto(firstPlayer, secondPlayer, null);
 
 
         UUID matchId = UUID.randomUUID();
@@ -60,8 +60,8 @@ public class OngoingMatchesService {
                     return playerDao.getByName(matchDto.getSecondPlayer().getName()).orElseThrow();
                 });
 
-        Match match = new Match(player1, player2);
-        match.setWinner(matchDto.getWinner().getName().equals(player1.getName()) ? player1 : player2);
+        Match match = new Match(player1, player2,
+                matchDto.getWinner().getName().equals(player1.getName()) ? player1 : player2);
         matchDao.save(match);
         ongoingMatches.remove(matchId);
     }

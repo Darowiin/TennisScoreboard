@@ -11,43 +11,27 @@ public class Mapper {
             return null;
         }
 
-        PlayerDto playerDto = new PlayerDto();
-        playerDto.setName(player.getName());
-
-        return playerDto;
+        return new PlayerDto(player.getName());
     }
     public static Player toPlayer(PlayerDto playerDto) {
         if (playerDto == null) {
             return null;
         }
 
-        Player player = new Player();
-        player.setName(playerDto.getName());
-
-        return player;
+        return new Player(playerDto.getName());
     }
     public static MatchDto toMatchDto(Match match) {
         if (match == null) {
             return null;
         }
 
-        MatchDto matchDto = new MatchDto();
-        matchDto.setFirstPlayer(toPlayerDto(match.getPlayer1()));
-        matchDto.setSecondPlayer(toPlayerDto(match.getPlayer2()));
-        matchDto.setWinner(toPlayerDto(match.getWinner()));
-
-        return matchDto;
+        return new MatchDto(toPlayerDto(match.getPlayer1()), toPlayerDto(match.getPlayer2()), toPlayerDto(match.getWinner()));
     }
     public static Match toMatch(MatchDto matchDto) {
         if (matchDto == null) {
             return null;
         }
 
-        Match match = new Match();
-        match.setPlayer1(toPlayer(matchDto.getFirstPlayer()));
-        match.setPlayer2(toPlayer(matchDto.getSecondPlayer()));
-        match.setWinner(toPlayer(matchDto.getWinner()));
-
-        return match;
+        return new Match(toPlayer(matchDto.getFirstPlayer()), toPlayer(matchDto.getSecondPlayer()), toPlayer(matchDto.getWinner()));
     }
 }

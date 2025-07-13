@@ -6,8 +6,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
     <body>
+    <nav>
+        <p>Tennis Scoreboard</p>
+        <div class="nav-links">
+            <a href="#">Главная</a>
+            <a href="matches">Матчи</a>
+        </div>
+    </nav>
+    <div class="container">
+
         <h1>Добро пожаловать в сервис для отслеживания теннисных матчей!</h1>
 
-        <a href="new-match">Запустить новый матч</a>
+        <button id=new-match>Запустить новый матч</button>
+        <button id=matches>Посмотреть завершенные матчи</button>
+    </div>
     </body>
+    <script>
+        document.getElementById("new-match").onclick = function () {
+            window.location.href = "new-match";
+        };
+        document.getElementById("matches").onclick = function () {
+            window.location.href = "matches";
+        };
+    </script>
 </html>
