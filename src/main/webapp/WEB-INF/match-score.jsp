@@ -21,6 +21,18 @@
   UUID matchUuid = (UUID) request.getAttribute("matchUuid");
   if (scoreObj != null) {
     com.dto.MatchScoreModel score = (com.dto.MatchScoreModel) scoreObj;
+    boolean isTieBreak = false;
+    Integer tb1 = null;
+    Integer tb2 = null;
+    try {
+      java.lang.reflect.Field tbField1 = score.getClass().getDeclaredField("tieBreakScoreFirst");
+      java.lang.reflect.Field tbField2 = score.getClass().getDeclaredField("tieBreakScoreSecond");
+      tbField1.setAccessible(true);
+      tbField2.setAccessible(true);
+      tb1 = (Integer) tbField1.get(score);
+      tb2 = (Integer) tbField2.get(score);
+      isTieBreak = tb1 != null && tb2 != null;
+    } catch (Exception e) { }
 %>
 <div class="card-container match-score-container">
   <h1>Счёт матча</h1>
@@ -59,6 +71,17 @@
         </form>
       </td>
     </tr>
+    <% if (isTieBreak) { %>
+    <tr class="tie-break-row">
+      <td colspan="5">
+        <div class="tie-break-info">
+          <h3>Тай-брейк</h3>
+          <p><%= score.getMatchDto().getFirstPlayer().getName() %>: <%= tb1 %></p>
+          <p><%= score.getMatchDto().getSecondPlayer().getName() %>: <%= tb2 %></p>
+        </div>
+      </td>
+    </tr>
+    <% } %>
     </tbody>
   </table>
 </div>

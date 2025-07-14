@@ -38,7 +38,8 @@ public class OngoingMatchesService {
 
 
         UUID matchId = UUID.randomUUID();
-        ongoingMatches.put(matchId, new MatchScoreModel(matchDto,0, 0, null,
+        ongoingMatches.put(matchId, new MatchScoreModel(matchDto,0, 0,
+                null, null, null,
                 new ArrayList<>(List.of(0, 0)), new ArrayList<>(List.of(0, 0))));
 
         return matchId;

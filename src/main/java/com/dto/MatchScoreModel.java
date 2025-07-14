@@ -14,6 +14,8 @@ public class MatchScoreModel {
     MatchDto matchDto;
     int firstPlayerScore;
     int secondPlayerScore;
+    Integer tieBreakScoreFirst;
+    Integer tieBreakScoreSecond;
     String advantage;
     List<Integer> games;
     List<Integer> sets;
