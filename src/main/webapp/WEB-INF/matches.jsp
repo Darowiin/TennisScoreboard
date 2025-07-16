@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Завершенные матчи</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <nav>
@@ -19,23 +19,12 @@
 <%
     List<MatchDto> matches = (List<MatchDto>) request.getAttribute("matches");
     String nameParam = request.getParameter("name") != null ? request.getParameter("name") : "";
+    String message = "";
     if (matches == null || matches.isEmpty()) {
-        String message = request.getAttribute("message").toString();
+        message = request.getAttribute("message").toString();
 %>
-<div class="card-container matches-container">
-    <div class="filter-form">
-        <form action="matches" method="get">
-            <div style="display: flex; flex-direction: column;">
-                <label for="name" class="filter-label">Имя</label>
-                <input name="name" id="name" value="<%= nameParam %>" class="filter-input">
-            </div>
-            <button type="submit" class="filter-button">Фильтровать</button>
-        </form>
-    </div>
-    <h1><%= message %></h1>
-</div>
 <%
-} else {
+    }
     int pageNumber = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
     int maxPages = (request.getAttribute("maxPages") != null) ? (int) request.getAttribute("maxPages") : 1;
 %>
@@ -48,8 +37,16 @@
             </div>
             <button type="submit" class="filter-button">Фильтровать</button>
         </form>
+<%
+    if (message != null && !message.isEmpty()) {
+%>
     </div>
+    <h1><%=message%></h1>
+<%
+    } else {
+%>
 
+</div>
     <h1>Завершённые матчи</h1>
     <table class="matches-table">
         <tr>
@@ -57,17 +54,20 @@
             <th>Second Player</th>
             <th>Winner</th>
         </tr>
-        <%
-            for (MatchDto match : matches) {
-        %>
+<%
+        for (MatchDto match : matches) {
+%>
         <tr>
             <td><%= match.getFirstPlayer().getName() %></td>
             <td><%= match.getSecondPlayer().getName() %></td>
             <td><%= match.getWinner().getName() %></td>
         </tr>
-        <%
-            }
-        %>
+
+
+<%
+        }
+    }
+%>
     </table>
     <div class="pagination">
         <% if (pageNumber > 1) { %>
@@ -116,9 +116,5 @@
             <span style="opacity:0.5;">&raquo;</span>
         <% } %>
     </div>
-</div>
-<%
-    }
-%>
 </body>
 </html>

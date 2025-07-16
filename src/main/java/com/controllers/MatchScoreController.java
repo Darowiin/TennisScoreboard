@@ -17,13 +17,12 @@ import java.util.UUID;
 
 @WebServlet("/match-score")
 public class MatchScoreController extends HttpServlet {
-    UUID matchId;
     OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
     MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        matchId = UUID.fromString(req.getParameter("uuid"));
+        UUID matchId = UUID.fromString(req.getParameter("uuid"));
         MatchScoreModel matchScoreModel = ongoingMatchesService.getMatchScore(matchId);
 
         if (matchScoreModel == null) {
@@ -31,6 +30,7 @@ public class MatchScoreController extends HttpServlet {
             return;
         }
         req.setAttribute("matchScoreModel", matchScoreModel);
+        req.setAttribute("matchUuid", matchId);
         ServletContext servletContext = getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher("/WEB-INF/match-score.jsp");
         requestDispatcher.forward(req, resp);
@@ -38,6 +38,7 @@ public class MatchScoreController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UUID matchId = UUID.fromString(req.getParameter("uuid"));
         MatchScoreModel matchScoreModel = ongoingMatchesService.getMatchScore(matchId);
         MatchDto matchDto = matchScoreModel.getMatchDto();
 

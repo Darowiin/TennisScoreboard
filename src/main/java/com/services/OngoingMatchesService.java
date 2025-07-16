@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -20,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class OngoingMatchesService {
-    private static Map<UUID, MatchScoreModel> ongoingMatches = new HashMap<>();
+    private static Map<UUID, MatchScoreModel> ongoingMatches = new ConcurrentHashMap<>();
     private final MatchDaoImpl matchDao = new MatchDaoImpl();
     private final PlayerDaoImpl playerDao = new PlayerDaoImpl();
 

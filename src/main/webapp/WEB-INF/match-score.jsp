@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <title>Страница матча</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <nav>
@@ -24,15 +24,9 @@
     boolean isTieBreak = false;
     Integer tb1 = null;
     Integer tb2 = null;
-    try {
-      java.lang.reflect.Field tbField1 = score.getClass().getDeclaredField("tieBreakScoreFirst");
-      java.lang.reflect.Field tbField2 = score.getClass().getDeclaredField("tieBreakScoreSecond");
-      tbField1.setAccessible(true);
-      tbField2.setAccessible(true);
-      tb1 = (Integer) tbField1.get(score);
-      tb2 = (Integer) tbField2.get(score);
-      isTieBreak = tb1 != null && tb2 != null;
-    } catch (Exception e) { }
+    tb1 = score.getTieBreakScoreFirst();
+    tb2 = score.getTieBreakScoreSecond();
+    isTieBreak = tb1 != null && tb2 != null;
 %>
 <div class="card-container match-score-container">
   <h1>Счёт матча</h1>
@@ -54,6 +48,7 @@
       <td><%= score.getSets().get(0)%></td>
       <td>
         <form method="post" action="/match-score?uuid=<%= matchUuid %>">
+          <input type="hidden" name="uuid" value=<%= matchUuid %>>
           <input type="hidden" name="winnerId" value="1">
           <button type="submit">Добавить очко</button>
         </form>
@@ -66,6 +61,7 @@
       <td><%= score.getSets().get(1)%></td>
       <td>
         <form method="post" action="/match-score?uuid=<%= matchUuid %>">
+          <input type="hidden" name="uuid" value=<%= matchUuid %>>
           <input type="hidden" name="winnerId" value="2">
           <button type="submit">Добавить очко</button>
         </form>
