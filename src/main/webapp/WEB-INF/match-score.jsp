@@ -47,8 +47,8 @@
       <td><%= score.getGames().get(0)%></td>
       <td><%= score.getSets().get(0)%></td>
       <td>
-        <form method="post" action="/match-score?uuid=<%= matchUuid %>">
-          <input type="hidden" name="uuid" value=<%= matchUuid %>>
+        <form method="post" action="${pageContext.request.contextPath}/match-score?uuid=<%= matchUuid %>">
+          <input type="hidden" name="uuid" value="<%= matchUuid %>">
           <input type="hidden" name="winnerId" value="1">
           <button type="submit">Добавить очко</button>
         </form>
@@ -60,8 +60,8 @@
       <td><%= score.getGames().get(1)%></td>
       <td><%= score.getSets().get(1)%></td>
       <td>
-        <form method="post" action="/match-score?uuid=<%= matchUuid %>">
-          <input type="hidden" name="uuid" value=<%= matchUuid %>>
+        <form method="post" action="${pageContext.request.contextPath}/match-score?uuid=<%= matchUuid %>">
+          <input type="hidden" name="uuid" value="<%= matchUuid %>">
           <input type="hidden" name="winnerId" value="2">
           <button type="submit">Добавить очко</button>
         </form>
