@@ -1,0 +1,259 @@
+/* Общие стили*/
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f7f7fa;
+    margin: 0;
+    padding: 0;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #e0e0e0;
+    border-bottom: 2px solid #6c6c6c;
+    padding: 0 2%;
+    height: 60px;
+}
+nav p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2d2d2d;
+    margin: 0;
+}
+nav a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+nav a:hover {
+    color: #1976d2;
+}
+h1 {
+    color: #1976d2;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+button {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 28px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+button:hover {
+    background-color: #1565c0;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+}
+.nav-links {
+    display: flex;
+    margin-left: auto;
+}
+.nav-links a {
+    margin-left: 20px;
+}
+.card-container {
+    margin-top: 12vh;
+    padding: 32px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(44, 62, 80, 0.10);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Индивидуальные ширины */
+.main-container { max-width: 800px; }
+.new-match-container { max-width: 500px; }
+.matches-container { max-width: 800px; }
+.match-score-container { max-width: 800px; }
+/* Для страницы создания матчей*/
+.new-match-container h2 {
+    color: #1976d2;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+.new-match-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.new-match-form label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 6px;
+}
+.new-match-form input,
+.new-match-form select {
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    font-size: 16px;
+    background: #f7f7fa;
+    transition: border 0.2s;
+}
+.new-match-form input:focus,
+.new-match-form select:focus {
+    border-color: #1976d2;
+    outline: none;
+}
+.new-match-form button {
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 18px;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.new-match-form button:hover {
+    background-color: #1565c0;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+}
+
+.match-score-container h1 {
+    color: #1976d2;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.match-score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+
+.match-score-table th, .match-score-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.match-score-table th {
+    background: #f7f7fa;
+    color: #1976d2;
+    font-weight: bold;
+}
+
+.match-score-table tr:nth-child(even) {
+    background: #f2f6fc;
+}
+.matches-container h1 {
+    color: #1976d2;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+.matches-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+}
+.matches-table th, .matches-table td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 16px;
+    text-align: center;
+    font-size: 16px;
+}
+.matches-table th {
+    background: #f7f7fa;
+    color: #1976d2;
+    font-weight: bold;
+}
+.matches-table tr:nth-child(even) {
+    background: #f2f6fc;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+.pagination a {
+    color: #1976d2;
+    background: #f7f7fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.2s, color 0.2s;
+}
+.pagination a:hover {
+    background: #1976d2;
+    color: #fff;
+}
+.pagination span {
+    background: #1976d2;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.filter-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.filter-form form {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+}
+.filter-form label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 6px;
+}
+.filter-form input {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #bdbdbd;
+    font-size: 16px;
+    background: #f7f7fa;
+    min-width: 180px;
+    transition: border 0.2s;
+}
+.filter-form input:focus {
+    border-color: #1976d2;
+    outline: none;
+}
+.filter-form button {
+    padding: 10px 24px;
+    border-radius: 6px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: background 0.2s, box-shadow 0.2s;
+    margin: 0;
+}
+.filter-form button:hover {
+    background-color: #1565c0;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.15);
+}
